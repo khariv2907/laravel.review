@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
+
 class HomeController extends Controller
 {
     /**
-     * Home Page
-     *
-     * @return mixed
+     * Home page.
      */
-    public function index(): mixed
+    public function index(): View
     {
-
+        return view('home');
     }
 }
