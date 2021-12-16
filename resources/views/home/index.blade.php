@@ -1,6 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app
+    :title="$pageTitle"
+>
     <div class="card">
         <div class="card-header">
             LinkedIn OAuth
@@ -15,23 +15,23 @@
                 <div class="mb-3 row">
                     <div class="col-sm-2">Name</div>
 
-                    <div class="col-sm-10">{{ $user->name }}</div>
+                    <div class="col-sm-10">User Name</div>
                 </div>
 
                 <div class="mb-3 row">
                     <div class="col-sm-2">Email</div>
 
-                    <div class="col-sm-10">{{ $user->email }}</div>
+                    <div class="col-sm-10">User E-mail</div>
                 </div>
 
                 <hr>
 
-                <a href="{{ route('auth.logout') }}" class="btn btn-primary">Disconnect</a>
+{{--                <a href="{{ route('auth.logout') }}" class="btn btn-primary">Disconnect</a>--}}
             @endauth
 
             @guest
-                <a href="{{ route('auth.linkedin.redirect') }}" class="btn btn-primary">Connect LinkedIn</a>
+{{--                <a href="{{ route('auth.linkedin.redirect') }}" class="btn btn-primary">Connect LinkedIn</a>--}}
             @endguest
         </div>
     </div>
-@endsection
+</x-layouts.app>

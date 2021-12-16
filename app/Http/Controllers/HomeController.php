@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
@@ -9,8 +11,12 @@ class HomeController extends Controller
     /**
      * Home page.
      */
-    public function index(): View
+    public function index(): Factory|View|Application
     {
-        return view('home');
+        $pageTitle = 'Home';
+        
+        return view('home.index', compact([
+            'pageTitle',
+        ]));
     }
 }
