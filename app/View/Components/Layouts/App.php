@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class App extends Component
@@ -29,6 +30,7 @@ class App extends Component
         return view('components.layouts.app', [
             'lang' => $this->getLang(),
             'title' => $this->title,
+            'user' => Auth::user(),
         ]);
     }
 
