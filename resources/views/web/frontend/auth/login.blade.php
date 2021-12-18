@@ -8,8 +8,6 @@
             Login Page
         </x-slot>
 
-        @include('web.frontend._partials.errors')
-
         {{ html()->form('POST', route('auth.login'))->class('col-6 offset-3 my-4')->open() }}
             <div class="mb-3">
                 {{ html()->label('Email address', 'email')->class('form-label') }}

@@ -17,7 +17,7 @@ class RegisterService
     /**
      * Register a user.
      */
-    public function registerFromDataObject(RegisterData $registerData)
+    public function registerByDataObject(RegisterData $registerData)
     {
         return $this->userRepository->store($registerData->all());
     }

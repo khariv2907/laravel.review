@@ -15,6 +15,10 @@
         <main>
             @include('web.frontend.layouts.app._partials.header')
 
+            <div class="container mt-5">
+                @include('web.frontend._partials.messages')
+            </div>
+
             <div class="container mt-5 mb-5">
                 @yield('content')
             </div>

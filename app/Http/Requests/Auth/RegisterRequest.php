@@ -3,7 +3,9 @@
 namespace App\Http\Requests\Auth;
 
 use App\Dto\Auth\RegisterData;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Spatie\LaravelData\WithData;
 
 class RegisterRequest extends FormRequest
@@ -25,7 +27,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)],
             'password' => ['required', 'string', 'confirmed', 'min:8', 'max:255'],
         ];
     }

@@ -4,15 +4,15 @@ namespace App\View\Components\Common\Alert;
 
 use Illuminate\View\Component;
 
-class ErrorDismissible extends Component
+class MessageDismissible extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $message
-    )
-    {
+        public string $alert,
+        public string $message,
+    ){
     }
 
     /**
@@ -22,6 +22,6 @@ class ErrorDismissible extends Component
      */
     public function render()
     {
-        return view('components.common.alert.error-dismissible');
+        return view('components.common.alert.message-dismissible');
     }
 }

@@ -10,7 +10,7 @@
 
         <h5 class="card-title">Welcome to the Laravel Demonstration Project</h5>
 
-        @auth
+    @auth
             <hr>
 
             <div class="mb-3 row">
