@@ -51,6 +51,7 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
+        // Authenticate the user.
         $loginService->loginByUser($user);
 
         // Regenerate user's session.
