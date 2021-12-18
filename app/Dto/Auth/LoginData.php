@@ -22,13 +22,4 @@ class LoginData extends BaseData
             (bool) $request->input('remember_me')
         );
     }
-    
-    public static function rules(): array
-    {
-        return [
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'max:255'],
-            'remember_me' => ['boolean'],
-        ];
-    }
 }

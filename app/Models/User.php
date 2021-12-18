@@ -47,6 +47,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Add a mutator to ensure hashed passwords
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected static function newFactory(): Factory

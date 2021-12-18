@@ -10,6 +10,12 @@
 
         {{ html()->form('POST', route('auth.register'))->class('col-6 offset-3 my-4')->open() }}
             <div class="mb-3">
+                {{ html()->label('Name', 'name')->class('form-label') }}
+
+                {{ html()->text('name')->class('form-control') }}
+            </div>
+
+            <div class="mb-3">
                 {{ html()->label('Email address', 'email')->class('form-label') }}
 
                 {{ html()->email('email')->class('form-control') }}

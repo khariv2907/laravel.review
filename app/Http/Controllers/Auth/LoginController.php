@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Dto\Auth\LoginData;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Services\Auth\LoginService;
 use App\Services\Seo\SeoService;
 use Illuminate\Contracts\Foundation\Application;
@@ -26,18 +27,22 @@ class LoginController extends Controller
     /**
      * Login a user.
      */
-    public function login(LoginService $loginService, LoginData $loginData): RedirectResponse
+    public function login(LoginService $loginService, LoginRequest $request): RedirectResponse
     {
-        $isAuthenticate = $loginService->loginUser($loginData);
+        /** @var LoginData $loginData */
+        $loginData = $request->getData();
 
-        if (! $isAuthenticate) {
+        $isAuthenticated = $loginService->loginByDataObject($loginData);
+
+        if (! $isAuthenticated) {
             return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
+                'email' => __('auth.failed'),
             ]);
         }
 
-        session()->regenerate();
+        // Regenerate user's session.
+        $request->session()->regenerate();
 
-        return redirect()->intended('home');
+        return redirect()->route('home');
     }
 }

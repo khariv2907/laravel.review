@@ -4,16 +4,28 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\IUserRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class UserRepository implements UserRepositoryInterface
+class UserRepository implements IUserRepository
 {
     /**
-     * {@inheritdoc}
+     * Get all users.
+     *
+     * @return User[]|Collection
      */
-    public function all(): Collection
+    public function all()
     {
         return User::all();
+    }
+
+    /**
+     * Store user.
+     * 
+     * @return User
+     */
+    public function store(array $data)
+    {
+        return User::create($data);
     }
 }
