@@ -3,37 +3,37 @@
 ])
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
+    <x-common.card-body>
+        <x-slot name="title">
             Home Page
-        </div>
+        </x-slot>
 
-        <div class="card-body">
-            <h5 class="card-title">Welcome to the Laravel Demonstration Project</h5>
+        <h5 class="card-title">Welcome to the Laravel Demonstration Project</h5>
 
-            @auth
-                <hr>
+        @auth
+            <hr>
 
-                <div class="mb-3 row">
-                    <div class="col-sm-2">Name</div>
+            <div class="mb-3 row">
+                <div class="col-sm-2">Name</div>
 
-                    <div class="col-sm-10">{{ $user->name }}</div>
-                </div>
+                <div class="col-sm-10">{{ $user->name }}</div>
+            </div>
 
-                <div class="mb-3 row">
-                    <div class="col-sm-2">Email</div>
+            <div class="mb-3 row">
+                <div class="col-sm-2">Email</div>
 
-                    <div class="col-sm-10">{{ $user->email }}</div>
-                </div>
+                <div class="col-sm-10">{{ $user->email }}</div>
+            </div>
 
-                <hr>
+            <hr>
 
-                <a href="{{ route('auth.logout') }}" class="btn btn-primary">Log out</a>
-            @endauth
+            <a href="{{ route('auth.logout') }}" class="btn btn-primary">Log out</a>
+        @endauth
 
-            @guest
-                <a href="{{ route('auth.login') }}" class="btn btn-primary">Sign in</a>
-            @endguest
-        </div>
-    </div>
+        @guest
+            <a href="{{ route('auth.register') }}" class="btn btn-primary mt-3 me-1">Sign up</a>
+
+            <a href="{{ route('auth.login') }}" class="btn btn-primary mt-3">Sign in</a>
+        @endguest
+    </x-common.card-body>
 @endsection

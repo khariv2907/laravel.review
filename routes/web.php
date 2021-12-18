@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Pages\HomePageController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,6 @@ Route::get('/', HomePageController::class)->name('home');
  */
 Route::group([
     'as' => 'auth.',
-    'prefix' => 'auth'
 ], function() {
     // Login.
     Route::middleware(['guest'])
@@ -25,6 +25,15 @@ Route::group([
             Route::get('/', [LoginController::class, 'showForm']);
             Route::post('/', [LoginController::class, 'login']);
     });
+
+    // Register.
+    Route::middleware(['guest'])
+        ->prefix('register')
+        ->as('register')
+        ->group(static function() {
+            Route::get('/', [RegisterController::class, 'showForm']);
+            Route::post('/', [RegisterController::class, 'register']);
+        });
     
     // Logout.
     Route::get('/logout', LogoutController::class)
