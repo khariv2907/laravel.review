@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
+use App\Services\Seo\SeoService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,10 +15,10 @@ class HomePageController extends Controller
     /**
      * Home page.
      */
-    public function __invoke(): Factory|View|Application
+    public function __invoke(SeoService $seoService): Factory|View|Application
     {
-        $pageTitle = 'Home';
+        $pageTitle = $seoService->getTitleByInputString('Home');
 
-        return view('pages.home.index', compact('pageTitle'));
+        return view('web.frontend.pages.home.index', compact('pageTitle'));
     }
 }

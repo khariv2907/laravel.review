@@ -1,6 +1,8 @@
-<x-layouts.app
-    :title="$pageTitle"
->
+@extends('web.frontend.layouts.app.index', [
+    'title' => $pageTitle
+])
+
+@section('content')
     <div class="card">
         <div class="card-header">
             Home Page
@@ -34,4 +36,4 @@
             @endguest
         </div>
     </div>
-</x-layouts.app>
+@endsection

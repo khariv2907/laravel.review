@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Layouts\Common\Partials;
+namespace App\View\Components\Layouts\App;
 
 use Closure;
 use Illuminate\Contracts\Foundation\Application;
@@ -9,6 +9,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
+use function route;
+use function view;
 
 class NavItem extends Component
 {
@@ -31,7 +33,7 @@ class NavItem extends Component
      */
     public function render(): View|Factory|Htmlable|string|Closure|Application
     {
-        return view('components.layouts.common.partials.nav-item', [
+        return view('components.layouts.app.nav-item', [
             'link' => $this->getLink(),
             'routeName' => $this->routeName,
             'label' => $this->label,
