@@ -26,7 +26,7 @@ class RegisterController extends Controller
      */
     public function showForm(SeoService $seoService): Factory|View|Application
     {
-        $pageTitle = $seoService->getTitleByInputString('Sign up');
+        $pageTitle = $seoService->getTitleByInputString(__('seo.register.title'));
 
         return view('web.frontend.auth.register', compact('pageTitle'));
     }
@@ -40,8 +40,8 @@ class RegisterController extends Controller
         RegisterRequest $request
     ): RedirectResponse
     {
-        /** @var RegisterData $registerData */
-        $registerData = $request->getData();
+        /** @var RegisterData $data */
+        $data = $request->getData();
 
         $user = $registerService->registerByDataObject($registerData);
 

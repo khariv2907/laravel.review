@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Profile;
 
-use App\Dto\Auth\RegisterData;
+use App\Dto\Profile\UpdateProfileData;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\WithData;
 
-class RegisterRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     use WithData;
     
@@ -17,7 +18,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -27,8 +28,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)],
-            'password' => ['required', 'confirmed', 'min:6', 'max:255', 'regex:/^(?=.*[a-z])(?=.*\d).+$/'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore(Auth::id())],
         ];
     }
 
@@ -37,6 +37,6 @@ class RegisterRequest extends FormRequest
      */
     protected function dataClass(): string
     {
-        return RegisterData::class;
+        return UpdateProfileData::class;
     }
 }

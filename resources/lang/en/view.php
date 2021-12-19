@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'form' => [
+        'save' => 'Save',
+        'change' => 'Change',
+    ],
     'pages' => [
         'home' => [
             'label' => 'Home',
@@ -37,5 +41,10 @@ return [
     'profile' => [
         'label' => 'Profile',
         'title' => 'Profile page',
+        'form' => [
+            'current_password' => 'Current Password',
+            'new_password' => 'New Password',
+            'confirm_new_password' => 'Confirm Password',
+        ],
     ],
 ];

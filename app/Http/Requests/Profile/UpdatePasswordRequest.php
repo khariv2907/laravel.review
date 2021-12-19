@@ -1,33 +1,34 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Profile;
 
-use App\Dto\Auth\RegisterData;
-use App\Models\User;
+use App\Dto\Profile\UpdatePasswordData;
+use App\Rules\MatchOldPassword;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Spatie\LaravelData\WithData;
 
-class RegisterRequest extends FormRequest
+class UpdatePasswordRequest extends FormRequest
 {
     use WithData;
-    
+
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**
      * Get the validation rules that apply to the request.
+     *
+     * @return array
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)],
+            'current_password' => ['required', new MatchOldPassword],
             'password' => ['required', 'confirmed', 'min:6', 'max:255', 'regex:/^(?=.*[a-z])(?=.*\d).+$/'],
         ];
     }
@@ -37,6 +38,6 @@ class RegisterRequest extends FormRequest
      */
     protected function dataClass(): string
     {
-        return RegisterData::class;
+        return UpdatePasswordData::class;
     }
 }

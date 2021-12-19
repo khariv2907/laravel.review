@@ -17,7 +17,7 @@ class HomePageController extends Controller
      */
     public function __invoke(SeoService $seoService): Factory|View|Application
     {
-        $pageTitle = $seoService->getTitleByInputString('Home');
+        $pageTitle = $seoService->getTitleByInputString(__('seo.home.title'));
         $user = Auth::user();
 
         return view('web.frontend.pages.home.index', compact([

@@ -31,6 +31,6 @@ trait HasRedirectWithMessage
      */
     public function backWithSuccess(string $message): RedirectResponse
     {
-        return $this->backWithMessage(Alert::Danger(), $message);
+        return $this->backWithMessage(Alert::Success(), $message);
     }
 }

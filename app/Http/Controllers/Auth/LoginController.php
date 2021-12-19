@@ -22,7 +22,7 @@ class LoginController extends Controller
      */
     public function showForm(SeoService $seoService): Factory|View|Application
     {
-        $pageTitle = $seoService->getTitleByInputString('Sign in');
+        $pageTitle = $seoService->getTitleByInputString(__('seo.login.title'));
 
         return view('web.frontend.auth.login', compact('pageTitle'));
     }
@@ -32,8 +32,8 @@ class LoginController extends Controller
      */
     public function login(LoginService $loginService, LoginRequest $request): RedirectResponse
     {
-        /** @var LoginData $loginData */
-        $loginData = $request->getData();
+        /** @var LoginData $data */
+        $data = $request->getData();
 
         $isAuthenticated = $loginService->loginByDataObject($loginData);
 

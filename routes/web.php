@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Pages\HomePageController;
 use App\Http\Controllers\Profile\ShowProfileController;
+use App\Http\Controllers\Profile\UpdatePasswordController;
+use App\Http\Controllers\Profile\UpdateProfileController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -49,6 +51,6 @@ Route::prefix('profile')
     ->middleware('auth')
     ->group(static function() {
         Route::get('/', ShowProfileController::class)->name('index');
-        Route::post('/update', ShowProfileController::class)->name('update');
-        Route::post('/update/password', ShowProfileController::class)->name('update.password');
+        Route::post('/update', UpdateProfileController::class)->name('update');
+        Route::post('/update/password', UpdatePasswordController::class)->name('update.password');
     });
