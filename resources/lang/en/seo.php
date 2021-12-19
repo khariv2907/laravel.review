@@ -10,7 +10,18 @@ return [
     'register' => [
         'title' => 'Sign up',
     ],
-    'profile' => [
-        'title' => 'Profile',
+    'account' => [
+        'profile' => [
+            'title' => 'Profile',
+        ],
+        'articles' => [
+            'index' => [
+                'title' => 'My Articles',
+            ],
+            'create' => [
+                'title' => 'Create Article',
+            ],
+        ],
     ],
+    
 ];

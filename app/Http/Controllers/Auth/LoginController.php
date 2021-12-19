@@ -35,7 +35,7 @@ class LoginController extends Controller
         /** @var LoginData $data */
         $data = $request->getData();
 
-        $isAuthenticated = $loginService->loginByDataObject($loginData);
+        $isAuthenticated = $loginService->loginByDataObject($data);
 
         if (! $isAuthenticated) {
             return $this->backWithError(__('auth.login.failed'));

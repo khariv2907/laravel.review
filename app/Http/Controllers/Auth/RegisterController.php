@@ -43,7 +43,7 @@ class RegisterController extends Controller
         /** @var RegisterData $data */
         $data = $request->getData();
 
-        $user = $registerService->registerByDataObject($registerData);
+        $user = $registerService->registerByDataObject($data);
 
         if (! $user) {
             return $this->backWithError(__('auth.register.failed'));

@@ -38,13 +38,21 @@ return [
             ],
         ],
     ],
-    'profile' => [
-        'label' => 'Profile',
-        'title' => 'Profile page',
-        'form' => [
-            'current_password' => 'Current Password',
-            'new_password' => 'New Password',
-            'confirm_new_password' => 'Confirm Password',
+    'articles' => [
+        
+    ],
+    'account' => [
+        'profile' => [
+            'label' => 'Profile',
+            'title' => 'Profile page',
+            'form' => [
+                'current_password' => 'Current Password',
+                'new_password' => 'New Password',
+                'confirm_new_password' => 'Confirm Password',
+            ],
+        ],
+        'articles' => [
+            'label' => 'My Articles',
         ],
     ],
 ];

@@ -1,31 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Profile;
+namespace App\Http\Controllers\Account\Profile;
 
-use App\Dto\Profile\UpdatePasswordData;
+use App\Dto\Profile\UpdateProfileData;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Profile\UpdatePasswordRequest;
+use App\Http\Requests\Profile\UpdateProfileRequest;
 use App\Services\Profile\ProfileService;
 use App\Traits\HasRedirectWithMessage;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UpdatePasswordController extends Controller
+class UpdateProfileController extends Controller
 {
     use HasRedirectWithMessage;
 
     /**
      * Update profile info.
      */
-    public function __invoke(ProfileService $profileService, UpdatePasswordRequest $request): RedirectResponse
+    public function __invoke(ProfileService $profileService, UpdateProfileRequest $request): RedirectResponse
     {
-        /** @var UpdatePasswordData $data */
+        /** @var UpdateProfileData $data */
         $data = $request->getData();
         $userId = Auth::id();
-
-        $isUpdated = $profileService->updatePasswordByDataObject($userId, $data);
-
+        
+        $isUpdated = $profileService->updateByDataObject($userId, $data);
+        
         if (! $isUpdated) {
             return $this->backWithError(__('message.update.failed'));
         }

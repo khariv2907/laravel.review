@@ -11,8 +11,13 @@
             <ul class="nav col-6 me-lg-auto mb-2 justify-content-end mb-md-0">
                 @auth
                     <x-layouts.app.nav-item
-                        route-name="profile.index"
-                        label="{{ __('view.profile.label') }}"
+                        route-name="account.articles.index"
+                        label="{{ __('view.account.articles.label') }}"
+                    />
+
+                    <x-layouts.app.nav-item
+                        route-name="account.profile.index"
+                        label="{{ __('view.account.profile.label') }}"
                     />
 
                     <x-layouts.app.nav-item

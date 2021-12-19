@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Account\Articles\ArticleResourceController;
+use App\Http\Controllers\Account\Profile\ShowProfileController;
+use App\Http\Controllers\Account\Profile\UpdatePasswordController;
+use App\Http\Controllers\Account\Profile\UpdateProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Pages\HomePageController;
-use App\Http\Controllers\Profile\ShowProfileController;
-use App\Http\Controllers\Profile\UpdatePasswordController;
-use App\Http\Controllers\Profile\UpdateProfileController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -44,13 +45,21 @@ Route::as('auth.')
 });
 
 /**
- * Profile.
+ * Account.
  */
-Route::prefix('profile')
-    ->as('profile.')
+Route::prefix('account')
+    ->as('account.')
     ->middleware('auth')
     ->group(static function() {
-        Route::get('/', ShowProfileController::class)->name('index');
-        Route::post('/update', UpdateProfileController::class)->name('update');
-        Route::post('/update/password', UpdatePasswordController::class)->name('update.password');
+        // Profile.
+        Route::prefix('profile')
+            ->as('profile.')
+            ->group(static function() {
+                Route::get('/', ShowProfileController::class)->name('index');
+                Route::post('/update', UpdateProfileController::class)->name('update');
+                Route::post('/update/password', UpdatePasswordController::class)->name('update.password');
+            });
+
+        // Articles.
+        Route::resource('articles', ArticleResourceController::class);
     });

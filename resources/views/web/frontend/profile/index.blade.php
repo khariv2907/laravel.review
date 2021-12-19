@@ -4,11 +4,11 @@
 
 @section('content')
     <x-common.card-body>
-        <x-slot name="title">{{ __('view.profile.title') }}</x-slot>
+        <x-slot name="title">{{ __('view.account.profile.title') }}</x-slot>
 
         <h3>Update profile</h3>
 
-        {{ html()->modelForm($user, 'POST', route('profile.update'))->class('col-6 my-4')->open() }}
+        {{ html()->modelForm($user, 'POST', route('account.profile.update'))->class('col-6 my-4')->open() }}
             <div class="mb-3">
                 {{ html()->label(__('view.user.name'), 'name')->class('form-label') }}
 
@@ -28,21 +28,21 @@
 
         <h3>Change password</h3>
 
-        {{ html()->form( 'POST', route('profile.update.password'))->class('col-6 my-4')->open() }}
+        {{ html()->form( 'POST', route('account.profile.update.password'))->class('col-6 my-4')->open() }}
             <div class="mb-3">
-                {{ html()->label(__('view.profile.form.current_password'), 'current_password')->class('form-label') }}
+                {{ html()->label(__('view.account.profile.form.current_password'), 'current_password')->class('form-label') }}
 
                 {{ html()->password('current_password')->class('form-control') }}
             </div>
 
             <div class="mb-3">
-                {{ html()->label(__('view.profile.form.new_password'), 'password')->class('form-label') }}
+                {{ html()->label(__('view.account.profile.form.new_password'), 'password')->class('form-label') }}
 
                 {{ html()->password('password')->class('form-control') }}
             </div>
 
             <div class="mb-3">
-                {{ html()->label(__('view.profile.form.confirm_new_password'), 'password_confirmation')->class('form-label') }}
+                {{ html()->label(__('view.account.profile.form.confirm_new_password'), 'password_confirmation')->class('form-label') }}
 
                 {{ html()->password('password_confirmation')->class('form-control') }}
         </div>
