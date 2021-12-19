@@ -39,12 +39,18 @@ class Article extends Model
 {
     use HasFactory;
 
+    /**
+     * {@inheritdoc}
+     */
     protected $fillable = [
         'user_id',
         'title',
         'content',
     ];
 
+    /**
+     * Get article's user.
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

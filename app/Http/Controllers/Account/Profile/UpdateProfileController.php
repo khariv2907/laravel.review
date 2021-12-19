@@ -15,15 +15,23 @@ class UpdateProfileController extends Controller
     use HasRedirectWithMessage;
 
     /**
+     * Create a new instance.
+     */
+    public function __construct(
+        private ProfileService $profileService,
+    ) {
+    }
+
+    /**
      * Update profile info.
      */
-    public function __invoke(ProfileService $profileService, UpdateProfileRequest $request): RedirectResponse
+    public function __invoke(UpdateProfileRequest $request): RedirectResponse
     {
         /** @var UpdateProfileData $data */
         $data = $request->getData();
         $userId = Auth::id();
         
-        $isUpdated = $profileService->updateByDataObject($userId, $data);
+        $isUpdated = $this->profileService->updateByDataObject($userId, $data);
         
         if (! $isUpdated) {
             return $this->backWithError(__('message.update.failed'));

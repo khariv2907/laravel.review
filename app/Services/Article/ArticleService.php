@@ -6,13 +6,15 @@ use App\Dto\Article\StoreArticleData;
 use App\Dto\Article\UpdateArticleData;
 use App\Models\Article;
 use App\Repositories\Interfaces\IArticleRepository;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 
 class ArticleService
 {
     private const PER_PAGE = 12;
 
+    /**
+     * Create a new instance.
+     */
     public function __construct(
         private IArticleRepository $articleRepository
     ) {
@@ -61,7 +63,7 @@ class ArticleService
     /**
      * Update article by DTO.
      */
-    public function updateByDataObject(int $id, UpdateArticleData $data)
+    public function updateByDataObject(int $id, UpdateArticleData $data): bool
     {
         return $this->articleRepository->update($id, $data->all());
     }
@@ -79,6 +81,9 @@ class ArticleService
      */
     public function preparePayloadToStore(int $userId, array $data): array
     {
-        return array_merge($data, ['user_id' => $userId]);
+        return array_merge(
+            $data, 
+            ['user_id' => $userId]
+        );
     }
 }

@@ -13,11 +13,19 @@ use function view;
 class HomePageController extends Controller
 {
     /**
+     * Create a new instance.
+     */
+    public function __construct(
+        private SeoService $seoService,
+    ) {
+    }
+    
+    /**
      * Home page.
      */
-    public function __invoke(SeoService $seoService): Factory|View|Application
+    public function __invoke(): Factory|View|Application
     {
-        $pageTitle = $seoService->getTitleByInputString(__('seo.home.title'));
+        $pageTitle = $this->seoService->getTitleByInputString(__('seo.home.title'));
         $user = Auth::user();
 
         return view('web.frontend.pages.home.index', compact([

@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests\Article;
 
-use App\Dto\Article\StoreArticleData;
 use App\Models\Article;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Spatie\LaravelData\WithData;
 
 class StoreArticleRequest extends FormRequest
 {

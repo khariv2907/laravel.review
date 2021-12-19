@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories;
 
 use App\Models\User;
@@ -11,39 +10,31 @@ class UserRepository implements IUserRepository
 {
     /**
      * Find user by id.
-     * 
-     * @return User
      */
-    public function findOrFailById(int $id)
+    public function findOrFailById(int $id): User
     {
         return User::findOrFail($id);
     }
     /**
      * Get all users.
-     *
-     * @return User[]|Collection
      */
-    public function all()
+    public function all(): Collection|array
     {
         return User::all();
     }
 
     /**
      * Store user.
-     * 
-     * @return User
      */
-    public function store(array $data)
+    public function store(array $data): User
     {
         return User::create($data);
     }
 
     /**
      * Update user.
-     *
-     * @return bool
      */
-    public function update(int $id, array $data)
+    public function update(int $id, array $data): bool
     {
         $user = $this->findOrFailById($id);
         
@@ -54,10 +45,8 @@ class UserRepository implements IUserRepository
 
     /**
      * Update user's password.
-     *
-     * @return bool
      */
-    public function updatePassword(int $id, string $password)
+    public function updatePassword(int $id, string $password): bool
     {
         $user = $this->findOrFailById($id);
 

@@ -16,13 +16,22 @@ use Illuminate\Http\RedirectResponse;
 class LoginController extends Controller
 {
     use HasRedirectWithMessage;
+
+    /**
+     * Create a new instance.
+     */
+    public function __construct(
+        private SeoService $seoService,
+        private LoginService $loginService,
+    ) {
+    }
     
     /**
      * Show the login form.
      */
-    public function showForm(SeoService $seoService): Factory|View|Application
+    public function showForm(): Factory|View|Application
     {
-        $pageTitle = $seoService->getTitleByInputString(__('seo.login.title'));
+        $pageTitle = $this->seoService->getTitleByInputString(__('seo.login.title'));
 
         return view('web.frontend.auth.login', compact('pageTitle'));
     }
@@ -30,12 +39,12 @@ class LoginController extends Controller
     /**
      * Login a user.
      */
-    public function login(LoginService $loginService, LoginRequest $request): RedirectResponse
+    public function login(LoginRequest $request): RedirectResponse
     {
         /** @var LoginData $data */
         $data = $request->getData();
 
-        $isAuthenticated = $loginService->loginByDataObject($data);
+        $isAuthenticated = $this->loginService->loginByDataObject($data);
 
         if (! $isAuthenticated) {
             return $this->backWithError(__('auth.login.failed'));

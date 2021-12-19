@@ -15,7 +15,7 @@ class PreviewItem extends Component
     public function __construct(
         public Article $article,
         public bool $isEditable = false,
-    ){
+    ) {
     }
 
     /**

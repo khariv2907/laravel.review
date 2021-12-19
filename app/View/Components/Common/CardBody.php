@@ -13,7 +13,6 @@ class CardBody extends Component
      */
     public function __construct()
     {
-        //
     }
 
     /**

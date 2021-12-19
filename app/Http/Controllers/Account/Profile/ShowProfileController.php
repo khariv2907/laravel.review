@@ -12,11 +12,19 @@ use Illuminate\Support\Facades\Auth;
 class ShowProfileController extends Controller
 {
     /**
+     * Create a new instance.
+     */
+    public function __construct(
+        private SeoService $seoService,
+    ) {
+    }
+    
+    /**
      * Profile page.
      */
-    public function __invoke(SeoService $seoService): Factory|View|Application
+    public function __invoke(): Factory|View|Application
     {
-        $pageTitle = $seoService->getTitleByInputString(__('seo.account.profile.title'));
+        $pageTitle = $this->seoService->getTitleByInputString(__('seo.account.profile.title'));
         $user = Auth::user();
 
         return view('web.frontend.account.profile.index', compact([

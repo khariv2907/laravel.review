@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories\Interfaces;
 
 use App\Models\User;
@@ -23,5 +22,4 @@ interface IArticleRepository
     public function update(int $id, array $data);
     
     public function destroy(int $id);
-    
 }

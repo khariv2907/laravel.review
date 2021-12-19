@@ -1,13 +1,9 @@
 <?php
 
-
 namespace App\Repositories;
 
 use App\Models\Article;
-use App\Models\User;
 use App\Repositories\Interfaces\IArticleRepository;
-use App\Repositories\Interfaces\IUserRepository;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -15,39 +11,32 @@ class ArticleRepository implements IArticleRepository
 {
     /**
      * Find article by id.
-     * 
-     * @return Article
      */
-    public function findOrFailById(int $id)
+    public function findOrFailById(int $id): Article
     {
         return Article::findOrFail($id);
     }
+    
     /**
      * Get all articles.
-     *
-     * @return Article[]|Collection
      */
-    public function all()
+    public function all(): Collection|array
     {
         return Article::all();
     }
 
     /**
      * Store article.
-     * 
-     * @return Article
      */
-    public function store(array $data)
+    public function store(array $data): Article
     {
         return Article::create($data);
     }
 
     /**
      * Update article.
-     *
-     * @return bool
      */
-    public function update(int $id, array $data)
+    public function update(int $id, array $data): bool
     {
         $user = $this->findOrFailById($id);
         
@@ -57,25 +46,25 @@ class ArticleRepository implements IArticleRepository
     }
 
     /**
-     * @return Paginator
+     * Get all paginated articles.
      */
-    public function paginated(int $perPage)
+    public function paginated(int $perPage): Paginator
     {
         return Article::simplePaginate($perPage);
     }
 
     /**
-     * @return Paginator
+     * Get all the newest paginated articles.
      */
-    public function newestPaginated(int $perPage)
+    public function newestPaginated(int $perPage): Paginator
     {
         return Article::newest()->simplePaginate($perPage);
     }
 
     /**
-     * @return Paginator
+     * Get all the newest paginated articles by user id.
      */
-    public function newestPaginatedByUserId(int $userId, int $perPage)
+    public function newestPaginatedByUserId(int $userId, int $perPage): Paginator
     {
         return Article::newest()
             ->whereUserId($userId)
@@ -83,9 +72,9 @@ class ArticleRepository implements IArticleRepository
     }
 
     /**
-     * @return bool|null
+     * Delete article.
      */
-    public function destroy(int $id)
+    public function destroy(int $id): bool
     {
         return Article::whereId($id)->delete();
     }

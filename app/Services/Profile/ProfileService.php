@@ -4,14 +4,16 @@ namespace App\Services\Profile;
 
 use App\Dto\Profile\UpdatePasswordData;
 use App\Dto\Profile\UpdateProfileData;
-use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
 
 class ProfileService
 {
+    /**
+     * Create a new instance.
+     */
     public function __construct(
         private IUserRepository $userRepository
-    ){
+    ) {
     }
 
     /**

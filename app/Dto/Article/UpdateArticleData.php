@@ -3,10 +3,12 @@
 namespace App\Dto\Article;
 
 use App\Dto\BaseData;
-use Illuminate\Http\Request;
 
 class UpdateArticleData extends BaseData
 {
+    /**
+     * Create a new DTO instance.
+     */
     public function __construct(
         public string $title,
         public string $content,

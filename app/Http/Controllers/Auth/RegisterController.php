@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Dto\Auth\LoginData;
 use App\Dto\Auth\RegisterData;
-use App\Enums\Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\Auth\LoginService;
@@ -22,11 +20,21 @@ class RegisterController extends Controller
     use HasRedirectWithMessage;
 
     /**
+     * Create a new instance.
+     */
+    public function __construct(
+        private SeoService $seoService,
+        private LoginService $loginService,
+        private RegisterService $registerService,
+    ) {
+    }
+
+    /**
      * Show the register form.
      */
-    public function showForm(SeoService $seoService): Factory|View|Application
+    public function showForm(): Factory|View|Application
     {
-        $pageTitle = $seoService->getTitleByInputString(__('seo.register.title'));
+        $pageTitle = $this->seoService->getTitleByInputString(__('seo.register.title'));
 
         return view('web.frontend.auth.register', compact('pageTitle'));
     }
@@ -34,16 +42,12 @@ class RegisterController extends Controller
     /**
      * Register new user.
      */
-    public function register(
-        RegisterService $registerService,
-        LoginService $loginService,
-        RegisterRequest $request
-    ): RedirectResponse
+    public function register(RegisterRequest $request): RedirectResponse
     {
         /** @var RegisterData $data */
         $data = $request->getData();
 
-        $user = $registerService->registerByDataObject($data);
+        $user = $this->registerService->registerByDataObject($data);
 
         if (! $user) {
             return $this->backWithError(__('auth.register.failed'));
@@ -52,7 +56,7 @@ class RegisterController extends Controller
         event(new Registered($user));
 
         // Authenticate the user.
-        $loginService->loginByUser($user);
+        $this->loginService->loginByUser($user);
 
         // Regenerate user's session.
         $request->session()->regenerate();

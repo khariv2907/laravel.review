@@ -14,19 +14,20 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class ArticleResourceController extends Controller
 {
     use HasRedirectWithMessage;
-    
+
+    /**
+     * Create a new instance.
+     */
     public function __construct(
         private ArticleService $articleService,
         private SeoService $seoService,
-    ){
+    ) {
     }
     /**
      * Display a listing of the resource.

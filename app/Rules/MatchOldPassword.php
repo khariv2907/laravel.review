@@ -10,12 +10,9 @@ class MatchOldPassword implements Rule
 {
     /**
      * Create a new rule instance.
-     *
-     * @return void
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -31,10 +28,8 @@ class MatchOldPassword implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'Password mismatch.';
     }

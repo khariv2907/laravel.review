@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class LoginData extends BaseData
 {
+    /**
+     * Create a new DTO instance.
+     */
     public function __construct(
         public string $email,
         public string $password,
