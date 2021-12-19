@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Repositories\Interfaces\IArticleRepository;
 use App\Repositories\Interfaces\IUserRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 
 class ArticleRepository implements IArticleRepository
@@ -56,29 +57,29 @@ class ArticleRepository implements IArticleRepository
     }
 
     /**
-     * @return LengthAwarePaginator
+     * @return Paginator
      */
     public function paginated(int $perPage)
     {
-        return Article::paginate($perPage);
+        return Article::simplePaginate($perPage);
     }
 
     /**
-     * @return LengthAwarePaginator
+     * @return Paginator
      */
     public function newestPaginated(int $perPage)
     {
-        return Article::newest()->paginate($perPage);
+        return Article::newest()->simplePaginate($perPage);
     }
 
     /**
-     * @return LengthAwarePaginator
+     * @return Paginator
      */
     public function newestPaginatedByUserId(int $userId, int $perPage)
     {
         return Article::newest()
             ->whereUserId($userId)
-            ->paginate($perPage);
+            ->simplePaginate($perPage);
     }
 
     /**

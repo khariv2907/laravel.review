@@ -7,10 +7,11 @@ use App\Dto\Article\UpdateArticleData;
 use App\Models\Article;
 use App\Repositories\Interfaces\IArticleRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\Paginator;
 
 class ArticleService
 {
-    private const PER_PAGE = 30;
+    private const PER_PAGE = 12;
 
     public function __construct(
         private IArticleRepository $articleRepository
@@ -20,7 +21,7 @@ class ArticleService
     /**
      * Get all with pagination.
      */
-    public function getPaginated(): LengthAwarePaginator
+    public function getPaginated(): Paginator
     {
         return $this->articleRepository->paginated(self::PER_PAGE);
     }
@@ -28,7 +29,7 @@ class ArticleService
     /**
      * Get all the newest with pagination.
      */
-    public function getNewestPaginated(): LengthAwarePaginator
+    public function getNewestPaginated(): Paginator
     {
         return $this->articleRepository->newestPaginated(self::PER_PAGE);
     }
@@ -36,7 +37,7 @@ class ArticleService
     /**
      * Get all the newest with pagination.
      */
-    public function getNewestPaginatedByUserId(int $userId): LengthAwarePaginator
+    public function getNewestPaginatedByUserId(int $userId): Paginator
     {
         return $this->articleRepository->newestPaginatedByUserId($userId, self::PER_PAGE);
     }

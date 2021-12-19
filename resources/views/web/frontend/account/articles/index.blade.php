@@ -10,7 +10,7 @@
             {{ __('view.account.articles.form.addBtn') }}
         </a>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3 mb-5">
             @forelse($articles as $article)
                 <div class="col">
                     <x-articles.preview-item
@@ -23,5 +23,8 @@
             @endforelse
         </div>
 
+        <x-common.simple-pagination
+            :paginator="$articles"
+        />
     </x-common.card-body>
 @endsection
