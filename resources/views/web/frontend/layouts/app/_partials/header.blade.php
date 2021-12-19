@@ -6,6 +6,11 @@
                     route-name="home"
                     label="{{ __('view.pages.home.label') }}"
                 />
+
+                <x-layouts.app.nav-item
+                    route-name="articles.index"
+                    label="{{ __('view.articles.label') }}"
+                />
             </ul>
 
             <ul class="nav col-6 me-lg-auto mb-2 justify-content-end mb-md-0">

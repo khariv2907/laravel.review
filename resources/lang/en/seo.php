@@ -23,5 +23,9 @@ return [
             ],
         ],
     ],
-    
+    'articles' => [
+        'index' => [
+            'title' => 'Articles',
+        ],
+    ],
 ];

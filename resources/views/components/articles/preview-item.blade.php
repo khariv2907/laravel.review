@@ -4,8 +4,8 @@
     <div class="card-body">
         <p class="card-text">{{ $article->title }}</p>
 
-        @if($isEditable)
-            <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
+            @if($isEditable)
                 <div class="btn-group">
                     <a href="{{ route('account.articles.show', $article->id) }}" class="btn btn-sm btn-outline-secondary">
                         {{ __('view.account.articles.actions.view') }}
@@ -21,7 +21,11 @@
                         {{ __('view.account.articles.actions.delete') }}
                     </button>
                 {{ html()->form()->close() }}
-            </div>
-        @endif
+            @else
+                <a href="{{ route('articles.show', $article->id) }}" class="btn btn-sm btn-outline-secondary">
+                    {{ __('view.articles.actions.view') }}
+                </a>
+            @endif
+        </div>
     </div>
 </div>

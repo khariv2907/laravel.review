@@ -40,7 +40,15 @@ return [
         ],
     ],
     'articles' => [
-        
+        'label' => 'Articles',
+        'title' => 'All Articles',
+        'not_found' => 'Articles not found.',
+        'actions' => [
+            'view' => 'View',
+        ],
+        'show' => [
+            'title' => 'View Article',
+        ],
     ],
     'account' => [
         'profile' => [
@@ -57,6 +65,7 @@ return [
         'articles' => [
             'title' => 'My Articles',
             'label' => 'My Articles',
+            'not_found' => 'Articles not found.',
             'form' => [
                 'addBtn' => 'Add Article',
                 'title' => 'Title',

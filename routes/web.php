@@ -4,6 +4,8 @@ use App\Http\Controllers\Account\Articles\ArticleResourceController;
 use App\Http\Controllers\Account\Profile\ShowProfileController;
 use App\Http\Controllers\Account\Profile\UpdatePasswordController;
 use App\Http\Controllers\Account\Profile\UpdateProfileController;
+use App\Http\Controllers\Articles\ArticleListController;
+use App\Http\Controllers\Articles\ShowArticleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -62,4 +64,14 @@ Route::prefix('account')
 
         // Articles.
         Route::resource('articles', ArticleResourceController::class);
+    });
+
+/**
+ * Articles.
+ */
+Route::prefix('articles')
+    ->as('articles.')
+    ->group(static function() {
+        Route::get('/', ArticleListController::class)->name('index');
+        Route::get('/{id}', ShowArticleController::class)->name('show');
     });
