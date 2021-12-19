@@ -11,7 +11,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 class ArticleService
 {
     private const PER_PAGE = 30;
-    
+
     public function __construct(
         private IArticleRepository $articleRepository
     ) {
@@ -23,6 +23,22 @@ class ArticleService
     public function getPaginated(): LengthAwarePaginator
     {
         return $this->articleRepository->paginated(self::PER_PAGE);
+    }
+
+    /**
+     * Get all the newest with pagination.
+     */
+    public function getNewestPaginated(): LengthAwarePaginator
+    {
+        return $this->articleRepository->newestPaginated(self::PER_PAGE);
+    }
+
+    /**
+     * Get all the newest with pagination.
+     */
+    public function getNewestPaginatedByUserId(int $userId): LengthAwarePaginator
+    {
+        return $this->articleRepository->newestPaginatedByUserId($userId, self::PER_PAGE);
     }
 
     /**

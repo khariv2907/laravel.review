@@ -26,6 +26,7 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'title' => ['required', 'min:3', 'max:255', Rule::unique(Article::class)],
+            'content' => ['required', 'min:3'],
         ];
     }
 }

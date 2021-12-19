@@ -6,7 +6,7 @@
     <x-common.card-body>
         <x-slot name="title">{{ __('view.account.profile.title') }}</x-slot>
 
-        <h3>Update profile</h3>
+        <h3>{{ __('view.account.profile.update_profile_title') }}</h3>
 
         {{ html()->modelForm($user, 'POST', route('account.profile.update'))->class('col-6 my-4')->open() }}
             <div class="mb-3">
@@ -26,7 +26,7 @@
 
         <hr>
 
-        <h3>Change password</h3>
+        <h3>{{ __('view.account.profile.change_password_title') }}</h3>
 
         {{ html()->form( 'POST', route('account.profile.update.password'))->class('col-6 my-4')->open() }}
             <div class="mb-3">

@@ -27,7 +27,8 @@ class UpdateArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:3', 'max:255', Rule::unique(Article::class)->ignore($this->id)],
+            'title' => ['required', 'min:3', 'max:255', Rule::unique(Article::class)->ignore($this->article)],
+            'content' => ['required', 'min:3'],
         ];
     }
 

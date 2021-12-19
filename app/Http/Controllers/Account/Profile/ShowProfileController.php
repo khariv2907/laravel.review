@@ -19,7 +19,7 @@ class ShowProfileController extends Controller
         $pageTitle = $seoService->getTitleByInputString(__('seo.account.profile.title'));
         $user = Auth::user();
 
-        return view('web.frontend.profile.index', compact([
+        return view('web.frontend.account.profile.index', compact([
             'pageTitle',
             'user',
         ]));

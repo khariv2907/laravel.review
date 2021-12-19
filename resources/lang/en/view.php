@@ -3,6 +3,7 @@
 return [
     'form' => [
         'save' => 'Save',
+        'create' => 'Create',
         'change' => 'Change',
     ],
     'pages' => [
@@ -45,6 +46,8 @@ return [
         'profile' => [
             'label' => 'Profile',
             'title' => 'Profile page',
+            'update_profile_title' => 'Update Profile',
+            'change_password_title' => 'Change Password',
             'form' => [
                 'current_password' => 'Current Password',
                 'new_password' => 'New Password',
@@ -52,7 +55,27 @@ return [
             ],
         ],
         'articles' => [
+            'title' => 'My Articles',
             'label' => 'My Articles',
+            'form' => [
+                'addBtn' => 'Add Article',
+                'title' => 'Title',
+                'content' => 'Content',
+            ],
+            'actions' => [
+                'view' => 'View',
+                'edit' => 'Edit',
+                'delete' => 'Delete',
+            ],
+            'create' => [
+                'title' => 'Create Article',
+            ],
+            'edit' => [
+                'title' => 'Edit Article',
+            ],
+            'show' => [
+                'title' => 'Show Article',
+            ],
         ],
     ],
 ];

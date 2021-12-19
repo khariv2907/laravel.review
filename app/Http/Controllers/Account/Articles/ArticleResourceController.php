@@ -17,6 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ArticleResourceController extends Controller
 {
@@ -33,7 +34,7 @@ class ArticleResourceController extends Controller
     public function index(): Factory|View|Application
     {
         $pageTitle = $this->seoService->getTitleByInputString(__('seo.account.articles.index.title'));
-        $articles = $this->articleService->getPaginated();
+        $articles = $this->articleService->getNewestPaginatedByUserId(Auth::id());
         
         return view('web.frontend.account.articles.index', compact([
             'pageTitle',
@@ -65,7 +66,7 @@ class ArticleResourceController extends Controller
             return $this->backWithError(__('message.update.failed'));
         }
 
-        return $this->backWithSuccess(__('message.update.success'));
+        return $this->redirectToRouteWithSuccess('account.articles.index', __('message.create.success'));
     }
 
     /**
@@ -74,6 +75,9 @@ class ArticleResourceController extends Controller
     public function show(int $id): Factory|View|Application
     {
         $article = $this->articleService->findOrFailById($id);
+        
+        Gate::authorize('view', $article);
+        
         $pageTitle = $this->seoService->getTitleByInputString($article->title);
         
         return view('web.frontend.account.articles.show', compact([
@@ -88,6 +92,9 @@ class ArticleResourceController extends Controller
     public function edit(int $id): Factory|View|Application
     {
         $article = $this->articleService->findOrFailById($id);
+        
+        Gate::authorize('update', $article);
+        
         $pageTitle = $this->seoService->getTitleByInputString($article->title);
 
         return view('web.frontend.account.articles.edit', compact([
@@ -101,6 +108,10 @@ class ArticleResourceController extends Controller
      */
     public function update(UpdateArticleRequest $request, int $id): RedirectResponse
     {
+        $article = $this->articleService->findOrFailById($id);
+        
+        Gate::authorize('update', $article);
+        
         /** @var UpdateArticleData $data */
         $data = $request->getData();
         
@@ -118,12 +129,16 @@ class ArticleResourceController extends Controller
      */
     public function destroy(int $id): RedirectResponse
     {
+        $article = $this->articleService->findOrFailById($id);
+        
+        Gate::authorize('delete', $article);
+        
         $isDeleted = $this->articleService->destroy($id);
         
         if (! $isDeleted) {
             return $this->backWithError(__('message.update.failed'));
         }
 
-        return $this->backWithSuccess(__('message.update.success'));
+        return $this->redirectToRouteWithSuccess('account.articles.index', __('message.delete.success'));
     }
 }

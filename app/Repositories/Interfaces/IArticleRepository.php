@@ -14,6 +14,10 @@ interface IArticleRepository
     
     public function paginated(int $perPage);
     
+    public function newestPaginated(int $perPage);
+    
+    public function newestPaginatedByUserId(int $userId, int $perPage);
+    
     public function store(array $data);
     
     public function update(int $id, array $data);

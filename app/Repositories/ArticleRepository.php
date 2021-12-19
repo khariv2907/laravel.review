@@ -64,6 +64,24 @@ class ArticleRepository implements IArticleRepository
     }
 
     /**
+     * @return LengthAwarePaginator
+     */
+    public function newestPaginated(int $perPage)
+    {
+        return Article::newest()->paginate($perPage);
+    }
+
+    /**
+     * @return LengthAwarePaginator
+     */
+    public function newestPaginatedByUserId(int $userId, int $perPage)
+    {
+        return Article::newest()
+            ->whereUserId($userId)
+            ->paginate($perPage);
+    }
+
+    /**
      * @return bool|null
      */
     public function destroy(int $id)
