@@ -4,32 +4,32 @@
             <ul class="nav col-6 me-lg-auto mb-2 justify-content-start mb-md-0">
                 <x-layouts.app.nav-item
                     route-name="home"
-                    label="Home"
+                    label="{{ __('view.pages.home.label') }}"
                 />
             </ul>
 
             <ul class="nav col-6 me-lg-auto mb-2 justify-content-end mb-md-0">
                 @auth
                     <x-layouts.app.nav-item
-                        route-name="auth.logout"
-                        label="Profile"
+                        route-name="profile.index"
+                        label="{{ __('view.profile.label') }}"
                     />
 
                     <x-layouts.app.nav-item
                         route-name="auth.logout"
-                        label="Logout"
+                        label="{{ __('view.auth.logout') }}"
                     />
                 @endauth
 
                 @guest
-                        <x-layouts.app.nav-item
-                            route-name="auth.register"
-                            label="Sign up"
-                        />
+                    <x-layouts.app.nav-item
+                        route-name="auth.register"
+                        label="{{ __('view.auth.sign_up') }}"
+                    />
 
                     <x-layouts.app.nav-item
                         route-name="auth.login"
-                        label="Sign in"
+                        label="{{ __('view.auth.sign_in') }}"
                     />
                 @endguest
             </ul>
