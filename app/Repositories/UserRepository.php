@@ -4,43 +4,17 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class UserRepository extends BaseRepository implements IUserRepository
 {
     /**
-     * Find user by id.
+     * {@inheritdoc}
      */
-    public function findOrFailById(int $id): User
+    protected function builder(): Builder|User
     {
-        return User::findOrFail($id);
-    }
-    /**
-     * Get all users.
-     */
-    public function all(): Collection|array
-    {
-        return User::all();
-    }
-
-    /**
-     * Store user.
-     */
-    public function store(array $data): User
-    {
-        return User::create($data);
-    }
-
-    /**
-     * Update user.
-     */
-    public function update(int $id, array $data): bool
-    {
-        $user = $this->findOrFailById($id);
-
-        $user->fill($data);
-
-        return $user->update();
+        return User::query();
     }
 
     /**
@@ -48,6 +22,7 @@ class UserRepository extends BaseRepository implements IUserRepository
      */
     public function updatePassword(int $id, string $password): bool
     {
+        /** @var User $user */
         $user = $this->findOrFailById($id);
 
         $user->password = $password;

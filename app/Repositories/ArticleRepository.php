@@ -5,52 +5,17 @@ namespace App\Repositories;
 use App\Models\Article;
 use App\Repositories\Interfaces\IArticleRepository;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class ArticleRepository extends BaseRepository implements IArticleRepository
 {
     /**
-     * Find article by id.
+     * {@inheritdoc}
      */
-    public function findOrFailById(int $id): Article
+    protected function builder(): Builder|Article
     {
-        return Article::findOrFail($id);
-    }
-
-    /**
-     * Get all articles.
-     */
-    public function all(): Collection|array
-    {
-        return Article::all();
-    }
-
-    /**
-     * Store article.
-     */
-    public function store(array $data): Article
-    {
-        return Article::create($data);
-    }
-
-    /**
-     * Update article.
-     */
-    public function update(int $id, array $data): bool
-    {
-        $user = $this->findOrFailById($id);
-
-        $user->fill($data);
-
-        return $user->update();
-    }
-
-    /**
-     * Get all paginated articles.
-     */
-    public function paginated(int $perPage): Paginator
-    {
-        return Article::simplePaginate($perPage);
+        return Article::query();
     }
 
     /**
@@ -58,7 +23,10 @@ class ArticleRepository extends BaseRepository implements IArticleRepository
      */
     public function newestPaginated(int $perPage): Paginator
     {
-        return Article::latest()->simplePaginate($perPage);
+        return $this
+            ->builder()
+            ->latest()
+            ->simplePaginate($perPage);
     }
 
     /**
@@ -66,16 +34,10 @@ class ArticleRepository extends BaseRepository implements IArticleRepository
      */
     public function newestPaginatedByUserId(int $userId, int $perPage): Paginator
     {
-        return Article::latest()
+        return $this
+            ->builder()
+            ->latest()
             ->whereUserId($userId)
             ->simplePaginate($perPage);
-    }
-
-    /**
-     * Delete article.
-     */
-    public function destroy(int $id): bool
-    {
-        return Article::whereId($id)->delete();
     }
 }
