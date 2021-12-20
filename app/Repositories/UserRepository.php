@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class UserRepository implements IUserRepository
+class UserRepository extends BaseRepository implements IUserRepository
 {
     /**
      * Find user by id.
@@ -37,9 +37,9 @@ class UserRepository implements IUserRepository
     public function update(int $id, array $data): bool
     {
         $user = $this->findOrFailById($id);
-        
+
         $user->fill($data);
-        
+
         return $user->update();
     }
 

@@ -14,13 +14,15 @@ class LoginData extends BaseData
         public string $email,
         public string $password,
         public bool $remember_me,
-    ) {
-    }
+    ) {}
 
+    /**
+     * Create a new instance from request.
+     */
     public static function fromRequest(Request $request): self
     {
         return new self(
-            $request->input('email'), 
+            $request->input('email'),
             $request->input('password'),
             (bool) $request->input('remember_me')
         );

@@ -12,9 +12,8 @@ class ProfileService
      * Create a new instance.
      */
     public function __construct(
-        private IUserRepository $userRepository
-    ) {
-    }
+        private IUserRepository $userRepository,
+    ) {}
 
     /**
      * Update user profile by DTO.

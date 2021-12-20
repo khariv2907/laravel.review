@@ -13,6 +13,5 @@ class RegisterData extends BaseData
         public string $name,
         public string $email,
         public string $password,
-    ) {
-    }
+    ) {}
 }

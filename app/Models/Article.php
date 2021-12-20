@@ -32,7 +32,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Article whereTitle($value)
  * @method static Builder|Article whereUpdatedAt($value)
  * @method static Builder|Article whereUserId($value)
- * @method static Builder|Article newest()
  * @mixin Eloquent
  */
 class Article extends Model
@@ -62,13 +61,5 @@ class Article extends Model
     protected static function newFactory(): Factory
     {
         return ArticleFactory::new();
-    }
-
-    /**
-     * Scope a query to show the newest first.
-     */
-    public function scopeNewest(Builder $query): Builder
-    {
-        return $query->orderByDesc('created_at');
     }
 }

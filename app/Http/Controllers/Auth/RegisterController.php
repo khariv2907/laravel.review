@@ -26,8 +26,7 @@ class RegisterController extends Controller
         private SeoService $seoService,
         private LoginService $loginService,
         private RegisterService $registerService,
-    ) {
-    }
+    ) {}
 
     /**
      * Show the register form.

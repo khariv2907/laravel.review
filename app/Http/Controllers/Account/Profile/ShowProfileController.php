@@ -16,9 +16,8 @@ class ShowProfileController extends Controller
      */
     public function __construct(
         private SeoService $seoService,
-    ) {
-    }
-    
+    ) {}
+
     /**
      * Profile page.
      */

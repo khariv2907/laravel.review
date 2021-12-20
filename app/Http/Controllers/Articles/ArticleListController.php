@@ -18,9 +18,8 @@ class ArticleListController extends Controller
     public function __construct(
         private SeoService $seoService,
         private ArticleService $articleService,
-    ) {
-    }
-    
+    ) {}
+
     /**
      * Show all articles.
      */
@@ -28,7 +27,7 @@ class ArticleListController extends Controller
     {
         $pageTitle = $this->seoService->getTitleByInputString(__('seo.articles.index.title'));
         $articles = $this->articleService->getNewestPaginated();
-        
+
         return view('web.frontend.articles.index', compact([
             'pageTitle',
             'articles',

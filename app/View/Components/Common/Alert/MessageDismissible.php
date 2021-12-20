@@ -14,8 +14,7 @@ class MessageDismissible extends Component
     public function __construct(
         public string $alert,
         public string $message,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

@@ -14,19 +14,13 @@ use function view;
 
 class NavItem extends Component
 {
-    private string $routeName;
-    private string $label;
-
     /**
      * Create a new component instance.
-     *
-     * @return void
      */
-    public function __construct(string $routeName, string $label)
-    {
-        $this->routeName = $routeName;
-        $this->label = $label;
-    }
+    public function __construct(
+        private string $routeName,
+        private string $label,
+    ) {}
 
     /**
      * {@inheritdoc}

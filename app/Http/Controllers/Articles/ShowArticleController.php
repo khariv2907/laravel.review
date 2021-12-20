@@ -18,9 +18,8 @@ class ShowArticleController extends Controller
     public function __construct(
         private SeoService $seoService,
         private ArticleService $articleService,
-    ) {
-    }
-    
+    ) {}
+
     /**
      * Show article.
      */
@@ -28,7 +27,7 @@ class ShowArticleController extends Controller
     {
         $article = $this->articleService->findOrFailById($id);
         $pageTitle = $this->seoService->getTitleByInputString($article->title);
-        
+
         return view('web.frontend.articles.show', compact([
             'article',
             'pageTitle',

@@ -11,6 +11,5 @@ class UpdatePasswordData extends BaseData
      */
     public function __construct(
         public string $password,
-    ) {
-    }
+    ) {}
 }

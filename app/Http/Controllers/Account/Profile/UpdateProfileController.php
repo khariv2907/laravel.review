@@ -19,8 +19,7 @@ class UpdateProfileController extends Controller
      */
     public function __construct(
         private ProfileService $profileService,
-    ) {
-    }
+    ) {}
 
     /**
      * Update profile info.
@@ -30,9 +29,9 @@ class UpdateProfileController extends Controller
         /** @var UpdateProfileData $data */
         $data = $request->getData();
         $userId = Auth::id();
-        
+
         $isUpdated = $this->profileService->updateByDataObject($userId, $data);
-        
+
         if (! $isUpdated) {
             return $this->backWithError(__('message.update.failed'));
         }

@@ -13,6 +13,5 @@ class StoreArticleData extends BaseData
         public int $user_id,
         public string $title,
         public string $content,
-    ) {
-    }
+    ) {}
 }

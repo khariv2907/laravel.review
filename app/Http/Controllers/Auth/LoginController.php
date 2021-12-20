@@ -23,9 +23,8 @@ class LoginController extends Controller
     public function __construct(
         private SeoService $seoService,
         private LoginService $loginService,
-    ) {
-    }
-    
+    ) {}
+
     /**
      * Show the login form.
      */

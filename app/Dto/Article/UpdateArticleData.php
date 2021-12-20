@@ -12,6 +12,5 @@ class UpdateArticleData extends BaseData
     public function __construct(
         public string $title,
         public string $content,
-    ) {
-    }
+    ) {}
 }

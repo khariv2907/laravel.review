@@ -17,9 +17,8 @@ class HomePageController extends Controller
      */
     public function __construct(
         private SeoService $seoService,
-    ) {
-    }
-    
+    ) {}
+
     /**
      * Home page.
      */

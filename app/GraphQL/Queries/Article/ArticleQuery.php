@@ -10,11 +10,13 @@ use Rebing\GraphQL\Support\Query;
 
 class ArticleQuery extends Query
 {
+    /**
+     * Create a new instance.
+     */
     public function __construct(
-        private IArticleRepository $articleRepository
-    ) {
-    }
-    
+        private IArticleRepository $articleRepository,
+    ) {}
+
     /**
      * Query configuration.
      */
@@ -46,7 +48,7 @@ class ArticleQuery extends Query
 
     /**
      * Resolve query.
-     * 
+     *
      * @param mixed $root
      */
     public function resolve($root, array $args): Article

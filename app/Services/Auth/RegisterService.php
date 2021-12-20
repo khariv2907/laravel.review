@@ -12,9 +12,8 @@ class RegisterService
      * Create a new instance.
      */
     public function __construct(
-        private IUserRepository $userRepository
-    ) {
-    }
+        private IUserRepository $userRepository,
+    ) {}
 
     /**
      * Register a user.
@@ -23,5 +22,4 @@ class RegisterService
     {
         return $this->userRepository->store($registerData->all());
     }
-
 }

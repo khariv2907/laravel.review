@@ -19,8 +19,7 @@ class UpdatePasswordController extends Controller
      */
     public function __construct(
         private ProfileService $profileService,
-    ) {
-    }
+    ) {}
 
     /**
      * Update profile info.

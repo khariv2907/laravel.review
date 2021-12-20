@@ -15,7 +15,7 @@ class ArticleType extends GraphQLType
     protected $attributes = [
         'name' => 'Article',
         'description' => 'Collection of articles',
-        'model' => Article::class
+        'model' => Article::class,
     ];
 
     /**

@@ -7,7 +7,7 @@ use App\Repositories\Interfaces\IArticleRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 
-class ArticleRepository implements IArticleRepository
+class ArticleRepository extends BaseRepository implements IArticleRepository
 {
     /**
      * Find article by id.
@@ -16,7 +16,7 @@ class ArticleRepository implements IArticleRepository
     {
         return Article::findOrFail($id);
     }
-    
+
     /**
      * Get all articles.
      */
@@ -39,9 +39,9 @@ class ArticleRepository implements IArticleRepository
     public function update(int $id, array $data): bool
     {
         $user = $this->findOrFailById($id);
-        
+
         $user->fill($data);
-        
+
         return $user->update();
     }
 
@@ -58,7 +58,7 @@ class ArticleRepository implements IArticleRepository
      */
     public function newestPaginated(int $perPage): Paginator
     {
-        return Article::newest()->simplePaginate($perPage);
+        return Article::latest()->simplePaginate($perPage);
     }
 
     /**
@@ -66,7 +66,7 @@ class ArticleRepository implements IArticleRepository
      */
     public function newestPaginatedByUserId(int $userId, int $perPage): Paginator
     {
-        return Article::newest()
+        return Article::latest()
             ->whereUserId($userId)
             ->simplePaginate($perPage);
     }

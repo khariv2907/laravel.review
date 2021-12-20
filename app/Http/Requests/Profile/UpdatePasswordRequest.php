@@ -23,7 +23,7 @@ class UpdatePasswordRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'current_password' => ['required', new MatchOldPassword],

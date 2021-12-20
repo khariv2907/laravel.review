@@ -16,9 +16,8 @@ class ArticleService
      * Create a new instance.
      */
     public function __construct(
-        private IArticleRepository $articleRepository
-    ) {
-    }
+        private IArticleRepository $articleRepository,
+    ) {}
 
     /**
      * Get all with pagination.
@@ -82,7 +81,7 @@ class ArticleService
     public function preparePayloadToStore(int $userId, array $data): array
     {
         return array_merge(
-            $data, 
+            $data,
             ['user_id' => $userId]
         );
     }

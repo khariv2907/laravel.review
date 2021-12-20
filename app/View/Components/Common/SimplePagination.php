@@ -13,8 +13,7 @@ class SimplePagination extends Component
      */
     public function __construct(
         public Paginator $paginator,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
